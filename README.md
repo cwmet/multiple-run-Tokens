@@ -5,7 +5,6 @@
 - Python 3.12에 최적화됨
 - disnake 필요
  - `pip install disnake`
- - 
 # 설명
 Tasks 함수는 각 봇 인스턴스를 생성하고 실행하는 비동기 작업이며
 threads 리스트에 각각의 토큰에 대한 스레드를 생성하여 병렬로 실행합니다.
