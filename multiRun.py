@@ -1,6 +1,5 @@
 import disnake, threading, asyncio
 from disnake.ext import commands
-TOKENS = ["토큰1", "토큰2"] # 구동할 토큰들
 
 async def Tasks(TOKEN):
     bot = commands.InteractionBot(intents=disnake.Intents.all())
@@ -10,11 +9,11 @@ async def Tasks(TOKEN):
     #   await interaction.response.send_message(embed=embed)
     await bot.start(TOKEN)
 
-threads = []
-for TOKEN in TOKENS:
-    thread = threading.Thread(target=asyncio.run, args=(Tasks(TOKEN),))
-    thread.start()
-    threads.append(thread)
+async def RunTasks():
+    TOKENS = ["토큰1", "토큰2"]
+    TASKS = []
+    for token in TOKENS:
+        TASKS.append(asyncio.create_task(Tasks(token)))
+    await asyncio.gather(*TASKS)
 
-for thread in threads:
-    thread.join()
+asyncio.run(RunTasks())
